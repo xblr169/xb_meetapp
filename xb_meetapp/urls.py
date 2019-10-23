@@ -33,11 +33,13 @@ urlpatterns = [
     url(r'^d-json/$',views.get_depart_byjson),
     url(r'^d-list/$',views.get_depart_bylist),
     url(r'^save-depart/$',views.save_depart),
+    url(r'^login-depart/$', views.login_depart),
     url(r'^save-user/$',user.save_user),
     url(r'^login/$',user.login),
     url(r'^get-data/$',meet.get_data),
     url(r'^get-amy/$',meet.get_data_byamy),
     url(r'^get-abc/$',meet.get_data_byabc),
+    url(r'^get-byuser/$', meet.get_data_byuser),
     url(r'^save-data/$',meet.save_data),
     #url(r'^mee/$',meviews.meview.as_view())
 ]

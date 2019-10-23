@@ -39,6 +39,32 @@ def get_data_byamy(request):
         return HttpResponse(json.dumps(list,cls=DateEncode, ensure_ascii=False))
 
 '''
+ 1、获取我的预订信息:根据用户、部门和月份获取预订信息；
+ 2、月份为大于等于当前月份;
+'''
+def get_data_byuser(request):
+    list =[]
+    if request.method =='POST':
+        received_body = request.body
+        received_body = json.loads(received_body)
+        year = received_body.get('year')
+        #user = received_body.get('user')
+        depart = received_body.get('depart')
+        month = received_body.get('month')
+        meets = Meetdb.objects.filter(depart=depart, year=year).filter(month__gte=month)
+        #meets = Meetdb.objects.filter(user=user, depart=depart, year=year).filter(month__gte=month)
+        #打印SQL语句
+        # print(str(Meetdb.objects.filter(user=user,
+        #                                 depart=depart,
+        #                                 year=year).filter(month__gte=month).query))
+        for meet in meets:
+            meet.__dict__.pop("_state")
+            list.append(meet.__dict__)
+    return HttpResponse(json.dumps(list, cls=DateEncode, ensure_ascii=False))
+
+    pass
+
+'''
  1、根据会议地址、会议室+月份获取预订信息;
 '''
 def get_data_byabc(request):

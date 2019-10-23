@@ -12,6 +12,19 @@ def hello(request):
     return HttpResponse('hello xibei meet app')
 
 '''
+  1、部门登录
+'''
+def login_depart(request):
+    result = "Error"
+    depart = request.GET.get('depart')
+    var1 = request.GET.get('var1')
+    depart = Departs.objects.filter(depart=depart,var1=var1)
+    if depart:
+        result = "OK"
+    return HttpResponse(result)
+
+
+'''
  获取会议室区域信息
 '''
 def get_domain(request):

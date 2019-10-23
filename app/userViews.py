@@ -9,7 +9,14 @@ from utils.dateCtrl import DateEncode
 def get_user(request):
     try:
         if request.method == 'GET':
-            users = User.objects.all()
+            depart = request.GET.get('depart')
+            if depart != None:
+                if depart =='请选择':
+                    users = User.objects.all()
+                else:
+                    users = User.objects.filter(depart=depart)
+            else:
+                users = User.objects.all()
             list =[]
             for user in users:
                 user.__dict__.pop("_state")

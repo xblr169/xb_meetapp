@@ -36,7 +36,7 @@ class Departs(models.Model):
     depart_id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=10,null=False)
     depart = models.CharField(max_length=50,null=False)
-
+    var1 = models.CharField(max_length=20, null=False)
 
 class Domain(models.Model):
     order = models.AutoField(primary_key=True)

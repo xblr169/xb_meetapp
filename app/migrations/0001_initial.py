@@ -30,6 +30,7 @@ class Migration(migrations.Migration):
                 ('depart_id', models.AutoField(primary_key=True, serialize=False)),
                 ('code', models.CharField(max_length=10)),
                 ('depart', models.CharField(max_length=50)),
+                ('var1', models.CharField(max_length=20)),
             ],
         ),
         migrations.CreateModel(
