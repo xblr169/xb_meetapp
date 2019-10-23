@@ -51,7 +51,7 @@ def get_data_byuser(request):
         #user = received_body.get('user')
         depart = received_body.get('depart')
         month = received_body.get('month')
-        meets = Meetdb.objects.filter(depart=depart, year=year).filter(month__gte=month)
+        meets = Meetdb.objects.filter(depart=depart, year=year).filter(month__gte=month).order_by('-day')
         #meets = Meetdb.objects.filter(user=user, depart=depart, year=year).filter(month__gte=month)
         #打印SQL语句
         # print(str(Meetdb.objects.filter(user=user,

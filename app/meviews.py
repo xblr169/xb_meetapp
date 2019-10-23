@@ -1,7 +1,7 @@
 import  json
 from django.http import HttpResponse,JsonResponse
 from django.views import View
-from app.models import Meetdb
+from app.models import Meetdb,Meet
 from django.views.decorators.csrf import csrf_exempt
 
 '''
@@ -10,7 +10,14 @@ from django.views.decorators.csrf import csrf_exempt
 '''
 class meview(View):
     def get(self,request):
-        return HttpResponse('This is request get method')
+        area = request.GET.get('area')
+        meets = Meet.objects.filter(area=area)
+        #print(str( Meet.objects.filter(area=area).query))
+        list = []
+        for meet in meets:
+            meet.__dict__.pop("_state")
+            list.append(meet.__dict__)
+        return JsonResponse(data =list,safe=False)
 
     def post(self,request):
         print(request.method)
